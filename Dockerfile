@@ -14,12 +14,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-## Copying ur all contents from local to app
-COPY . .
+## Copy only requirements first so Docker can install dependencies cleanly
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-## Run setup.py
-# no cache dir - we want to ignore cache files
-RUN pip install --no-cache-dir -e .
+## Copy the rest of the app after dependencies are installed
+COPY . .
 
 # Used PORTS
 EXPOSE 5000
