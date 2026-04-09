@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: flask-app:latest
+        image: pgauthampai/flask-app:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 5000
